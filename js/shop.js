@@ -107,7 +107,19 @@ function buy(id) {
 }
 
 // Exercise 2
-function cleanCart() {}
+function cleanCart() {
+    const confirmMsg = "¿Estás seguro/a de vaciar el carrito? Esta acción no se puede deshacer.";
+    const userConfirmed = confirm(confirmMsg);
+  // Reinicializo el cart vaciándolo con el array cart vacío
+  if(userConfirmed){
+  cart = [];
+  total = 0; // Reinicializo el total 
+
+  // Lógica adicional para actualizar la interfaz de usuario si es necesario
+  console.log("El carrito se ha vaciado correctamente");
+  printCart(); // Actualizo la visualización del carrito para el usuario
+  }
+}
 
 // Exercise 3
 function calculateTotal() {
