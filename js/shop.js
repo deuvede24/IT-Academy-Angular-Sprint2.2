@@ -87,14 +87,14 @@ function buy(id) {
       // Si el producto ya está en el carrito, incrementar quantity
       productoExist.quantity++;
       total++;
-      console.log("cart: " , cart);
-      console.log("total: " , total);
+      console.log("cart: ", cart);
+      console.log("total: ", total);
     } else {
       // Si no está, lo agrego con quantity inicial en 1
       cart.push({ ...productoAdd, quantity: 1 });
       total++;
-      console.log("cart: " , cart);
-      console.log("total: " , total);
+      console.log("cart: ", cart);
+      console.log("total: ", total);
     }
     console.log(`Producto "${productoAdd.name}" agregado al carrito.`);
   } else {
@@ -104,37 +104,108 @@ function buy(id) {
   // Llamar a las funciones para aplicar promociones y actualizar el carrito para que el usuario lo vea
   applyPromotionsCart();
   printCart();
+  calculateTotal();
+  applyPromotionsCart();
 }
 
 // Exercise 2
 function cleanCart() {
-    const confirmMsg = "¿Estás seguro/a de vaciar el carrito? Esta acción no se puede deshacer.";
-    const userConfirmed = confirm(confirmMsg);
+  const confirmMsg =
+    "¿Estás seguro/a de vaciar el carrito? Esta acción no se puede deshacer.";
+  const userConfirmed = confirm(confirmMsg);
   // Reinicializo el cart vaciándolo con el array cart vacío
-  if(userConfirmed){
-  cart = [];
-  total = 0; // Reinicializo el total 
+  if (userConfirmed) {
+    cart = [];
+    total = 0; // Reinicializo el total
 
-  // Lógica adicional para actualizar la interfaz de usuario si es necesario
-  console.log("El carrito se ha vaciado correctamente");
-  printCart(); // Actualizo la visualización del carrito para el usuario
+    // Lógica adicional para actualizar la interfaz de usuario si es necesario
+    console.log("El carrito se ha vaciado correctamente");
+    printCart(); // Actualizo la visualización del carrito para el usuario
   }
 }
 
 // Exercise 3
 function calculateTotal() {
   // Calculate total price of the cart using the "cartList" array
+  /*let total = 0;
+  for (let i = 0; i < cart.length; i++) total += total;*/
+  let totalPrice = 0;
+
+  // Recorrer el array cart para calcular el precio total
+  cart.forEach((item) => {
+    totalPrice += item.price * item.quantity;
+  });
+
+  // Actualizar la variable total con el precio total calculado
+  let totalCart = totalPrice;
+  console.log("el totalPrice es: ", totalPrice);
+
+  // Mostrar el precio total en la consola o hacer otras operaciones si es necesario
+  console.log(`Total price of the cart: $${totalCart}`);
+
+  // Llamar a otras funciones o realizar otras acciones necesarias después del cálculo
+  // Por ejemplo, actualizar la interfaz de usuario con el nuevo total
+  printCart();
 }
 
 // Exercise 4
 function applyPromotionsCart() {
+        cart.forEach((item) => {
+            let productCart = products.find((product) => product.id === item.id);
+    
+            if (productCart && productCart.offer && item.quantity >= productCart.offer.number) {
+                let productTotalPrice = item.price * item.quantity;
+                let productDiscount = (productTotalPrice * productCart.offer.percent) / 100;
+                item.subtotalWithDiscount = productTotalPrice - productDiscount;
+            } else {
+                item.subtotalWithDiscount = item.price * item.quantity;
+            }
+        });
+        console.log("Promotions applied successfully.");
+        applyPromotionsCart()
+        printCart()
+    }
+    
   // Apply promotions to each item in the array "cart"
-}
+  /*cart.forEach((item) => {
+    if (
+      //item.type === "grocery" &&
+      item.name === "cooking oil" &&
+      item.quantity >= 3
+    ) {
+      // Aplicar descuento del 20% para ampolles d'oli si se compran 3 o más
+      item.subtotalWithDiscount = item.price * item.quantity * 0.8;
+      console.log("Promotions OLI.");
+    } else if (item.name === "Instant cupcake mixture" && item.quantity >= 10) {
+      // Aplicar descuento del 30% para productes per a pastissos si se compran 10 o más
+      console.log("Promotions MIXTURE.");
+      item.subtotalWithDiscount = item.price * item.quantity * 0.7;
+    } else {
+      // Si no aplica ninguna promoción, subtotalWithDiscount se mantiene igual que el subtotal
+      item.subtotalWithDiscount = item.price * item.quantity;
+    }
+  });
 
+  console.log("Promotions applied successfully.");
+
+  printCart(); // Actualizar la visualización del carrito después de aplicar las promociones*/
+
+ 
+  if (productFind) {
+    let productInCart = cart.find(element => element.id === id)
+
+    if(productInCart) {
+        productInCart.quantity ++;
+        count ++;
+    } else {
+        cart.push({ ...productFind, quantity: 1})
+        count ++;
+    }
+} 
 // Exercise 5
 function printCart() {
   // Fill the shopping cart modal manipulating the shopping cart dom
-  
+  +
 }
 
 // ** Nivell II **
