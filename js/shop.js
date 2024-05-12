@@ -246,6 +246,7 @@ function printCart() {
   //showTotal.innerHTML = `$${total.toFixed(2)}`;
   showTotal.innerHTML = "$" + total.toFixed(2);
   countProduct.innerHTML = productCount.toString();
+
 }
 
 // ** Nivell II **
