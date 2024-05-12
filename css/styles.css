@@ -3491,6 +3491,10 @@ textarea.form-control-lg {
   font-size: 0.875rem;
   border-radius: 0.2rem;
 }
+.shopnow {
+  font-weight: bold; /*Establece texto en negrita */
+  color: #333 !important; /* Establece color del texto gris oscuro */
+}
 
 .fade {
   transition: opacity 0.15s linear;
