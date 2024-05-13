@@ -178,28 +178,8 @@ function applyPromotionsCart() {
   printCart();
 }
 
-// Apply promotions to each item in the array "cart"
-/*cart.forEach((item) => {
-    if (
-      //item.type === "grocery" &&
-      item.name === "cooking oil" &&
-      item.quantity >= 3
-    ) {
-      // Aplicar descuento del 20% para ampolles d'oli si se compran 3 o más
-      item.subtotalWithDiscount = item.price * item.quantity * 0.8;
-      console.log("Promotions OLI.");
-    } else if (item.name === "Instant cupcake mixture" && item.quantity >= 10) {
-      // Aplicar descuento del 30% para productes per a pastissos si se compran 10 o más
-      console.log("Promotions MIXTURE.");
-      item.subtotalWithDiscount = item.price * item.quantity * 0.7;
-    } else {
-      // Si no aplica ninguna promoción, subtotalWithDiscount se mantiene igual que el subtotal
-      item.subtotalWithDiscount = item.price * item.quantity;
-    }
-  });
 
   console.log("Promotions applied successfully.");
-
   printCart(); // Actualizar la visualización del carrito después de aplicar las promociones*/
 
 // Exercise 5
@@ -243,7 +223,6 @@ function printCart() {
   cartList.innerHTML = cartTableHTML;
 
   // Mostrar el total y la cantidad de productos en el DOM
-  //showTotal.innerHTML = `$${total.toFixed(2)}`;
   showTotal.innerHTML = "$" + total.toFixed(2);
   countProduct.innerHTML = productCount.toString();
 
@@ -259,14 +238,6 @@ function removeFromCart(id) {
   if (index !== -1) {
     // El producto se encontró en el cart
     let item = cart[index];
-
-    /*if (item.quantity > 1) {
-      // Si quantity > 1, decrementar en 1 unidad
-      item.quantity--;
-    } else {
-      // Si quantity = 1, eliminar item del cart 
-      cart.splice(index, 1);
-    }*/
 
     item.quantity > 1 ? item.quantity-- : cart.splice(index, 1);
 
